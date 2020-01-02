@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>Reservations</h1>
+        <img src={require("./images/logo.webp")}></img>
         <Route exact path="/create" component={CreateNew} />
         <Route exact path="/" component={Dashboard}></Route>
       </div>

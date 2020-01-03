@@ -75,3 +75,14 @@ body {
 #note {
   color: white;
 }
+
+.dashboard {
+  color: white;
+}
+
+.reserve-data {
+  padding: 8px;
+  display: grid;
+  border: 2px solid #fff;
+  grid-template-columns: repeat(9, 1fr);
+}

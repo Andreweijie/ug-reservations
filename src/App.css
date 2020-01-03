@@ -124,4 +124,17 @@ body {
 #note {
   color: white;
 }
+
+.dashboard {
+  color: white;
+}
+
+.reserve-data {
+  padding: 8px;
+  display: -ms-grid;
+  display: grid;
+  border: 2px solid #fff;
+  -ms-grid-columns: (1fr)[9];
+      grid-template-columns: repeat(9, 1fr);
+}
 /*# sourceMappingURL=App.css.map */

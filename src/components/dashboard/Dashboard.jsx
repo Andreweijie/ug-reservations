@@ -25,7 +25,7 @@ export default class Dashboard extends Component {
   render() {
     console.log(this.state.reservations);
     return (
-      <div>
+      <div className="dashboard">
         {!this.state.loading
           ? this.state.reservations.map(each => {
               return <ReserveData key={each.id} data={each}></ReserveData>;

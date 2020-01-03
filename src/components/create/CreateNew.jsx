@@ -46,7 +46,8 @@ export default class CreateNew extends Component {
       contactPref: this.state.contactPref,
       remarks: this.state.remarks,
       finished: false,
-      createdAt: new Date()
+      createdAt: new Date(),
+      confirmed: false
     };
 
     db.collection("reservations").add(newReserve);

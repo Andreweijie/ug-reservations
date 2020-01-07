@@ -51,6 +51,27 @@ export default class CreateNew extends Component {
     };
 
     db.collection("reservations").add(newReserve);
+
+    fetch(
+      "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendReservationMail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newReserve)
+      }
+    )
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        if (data.message) {
+          console.log("success");
+          this.props.history.replace("/confirmation");
+        } else {
+          console.log("Failed");
+        }
+      });
   };
   render() {
     return (

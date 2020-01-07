@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
   };
   componentDidMount() {
     db.collection("reservations")
-      .orderBy("createdAt", "asc")
+      .orderBy("createdAt", "desc")
       .onSnapshot(querySnapshot => {
         let data = [];
         querySnapshot.forEach(doc => {

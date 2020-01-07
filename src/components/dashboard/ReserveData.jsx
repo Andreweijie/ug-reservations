@@ -18,14 +18,22 @@ export default class ReserveData extends Component {
       seatPref: this.props.data.seatPref,
       time: this.props.data.time
     };
-    fetch("/test", {
-      method: "POST",
-      body: JSON.stringify(mailData)
-    })
+    fetch(
+      "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(mailData)
+      }
+    )
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-        this.confirmReserve();
+        if (data.message) {
+          console.log("Success");
+          this.confirmReserve();
+        }
       });
   };
   render() {
@@ -39,55 +47,61 @@ export default class ReserveData extends Component {
       }
     );
     return (
-      <div className="reserve-data">
-        <span>
-          <h4 style={{ margin: 0 }}>Name</h4>
-          {this.props.data.name}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Mobile</h4>
-          {this.props.data.mobile}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Email</h4>
-          {this.props.data.email}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Pax</h4>
-          {this.props.data.pax}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Date</h4>
-          {date}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Time</h4>
-          {this.props.data.time}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Seating</h4>
-          {this.props.data.seatPref}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Contact</h4>
-          {this.props.data.contactPref}
-        </span>
-        <span>
-          <h4 style={{ margin: 0 }}>Remarks</h4>
-          {this.props.data.remarks}
-        </span>
-        <button>Send Email</button>
-        <button
-          className="confirm-btn"
-          style={
-            this.props.data.confirmed
-              ? { backgroundColor: "#3ee67e" }
-              : { backgroundColor: "grey" }
-          }
-          onClick={this.confirmReserve}
-        >
-          {this.props.data.confirmed ? "Confirmed" : "Confirm"}
-        </button>
+      <div className="reserve-data-box">
+        <div className="reserve-data">
+          <span>
+            <h4 style={{ margin: 0 }}>Name</h4>
+            {this.props.data.name}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Mobile</h4>
+            {this.props.data.mobile}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Email</h4>
+            {this.props.data.email}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Pax</h4>
+            {this.props.data.pax}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Date</h4>
+            {date}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Time</h4>
+            {this.props.data.time}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Seating</h4>
+            {this.props.data.seatPref}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Contact</h4>
+            {this.props.data.contactPref}
+          </span>
+          <span>
+            <h4 style={{ margin: 0 }}>Remarks</h4>
+            {this.props.data.remarks}
+          </span>
+        </div>
+        <div className="buttons">
+          <button className="email-btn" onClick={this.sendConfirmation}>
+            Send Email
+          </button>
+          <button
+            className="confirm-btn"
+            style={
+              this.props.data.confirmed
+                ? { backgroundColor: "#3ee67e" }
+                : { backgroundColor: "grey" }
+            }
+            onClick={this.confirmReserve}
+          >
+            {this.props.data.confirmed ? "Confirmed" : "Confirm"}
+          </button>
+        </div>
       </div>
     );
   }

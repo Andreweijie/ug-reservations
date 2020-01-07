@@ -9,6 +9,13 @@ export default class ReserveData extends Component {
         confirmed: true
       });
   };
+  confirmArrival = () => {
+    db.collection("reservations")
+      .doc(this.props.data.id)
+      .update({
+        finished: true
+      });
+  };
 
   sendConfirmation = () => {
     const mailData = {
@@ -100,6 +107,17 @@ export default class ReserveData extends Component {
             onClick={this.confirmReserve}
           >
             {this.props.data.confirmed ? "Confirmed" : "Confirm"}
+          </button>
+          <button
+            className="arrive-btn"
+            style={
+              this.props.data.finished
+                ? { backgroundColor: "#69d693" }
+                : { backgroundColor: "#333333" }
+            }
+            onClick={this.confirmArrival}
+          >
+            {this.props.data.finished ? "Arrived" : "Arrive"}
           </button>
         </div>
       </div>

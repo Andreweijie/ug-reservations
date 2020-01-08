@@ -19,6 +19,9 @@ body {
       button {
         font-weight: bold;
         font-size: large;
+        margin: 16px;
+        border: none;
+        padding: 8px;
       }
       .form-row {
         width: 100%;
@@ -120,6 +123,8 @@ body {
 }
 
 .reservation-box {
+  text-align: center;
+  padding: 8px;
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -234,6 +239,22 @@ input[type="checkbox"].dmcheck {
     background-color: #f0f0f0;
     .reserve-data {
       color: #000;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  #note {
+    width: 300px;
+  }
+  form {
+    button {
+      margin: 8px;
+    }
+    #remarks {
+      width: 92%;
+    }
+    .rc-time-picker-input {
+      width: 88% !important;
     }
   }
 }

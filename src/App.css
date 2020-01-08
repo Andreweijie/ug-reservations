@@ -49,6 +49,9 @@ body {
 .App #create form button {
   font-weight: bold;
   font-size: large;
+  margin: 16px;
+  border: none;
+  padding: 8px;
 }
 
 .App #create form .form-row {
@@ -185,6 +188,8 @@ body {
 }
 
 .reservation-box {
+  text-align: center;
+  padding: 8px;
   color: #fff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -328,5 +333,20 @@ input[type="checkbox"].dmcheck + label {
 
 .light-mode .reserve-data-box .reserve-data {
   color: #000;
+}
+
+@media only screen and (max-width: 500px) {
+  #note {
+    width: 300px;
+  }
+  form button {
+    margin: 8px;
+  }
+  form #remarks {
+    width: 92%;
+  }
+  form .rc-time-picker-input {
+    width: 88% !important;
+  }
 }
 /*# sourceMappingURL=App.css.map */

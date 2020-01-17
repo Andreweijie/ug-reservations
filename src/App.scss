@@ -6,29 +6,41 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  .links {
+    margin: 16px;
+    a {
+      text-decoration: none;
+      color: #fff;
+      border: 2px solid white;
+      padding: 8px;
+      margin-top: 8px;
+      margin: 4px;
+    }
+  }
   #create {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    h1 {
+      color: #fff;
+    }
     form {
       width: 70vw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      .full-width {
+        grid-column: 1 / 3;
+      }
       button {
+        background-color: #fff;
         font-weight: bold;
         font-size: large;
-        margin: 16px;
+        height: 40px;
+        margin-top: 8px;
+        margin-bottom: 8px;
         border: none;
-        padding: 8px;
-      }
-      .form-row {
-        width: 100%;
-        display: flex;
-        .form-col {
-          width: 80%;
-        }
       }
     }
   }
@@ -39,7 +51,8 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 8px;
+  //padding: 8px;
+  margin-bottom: 8px;
   label {
     font-weight: bold;
   }
@@ -51,27 +64,41 @@ body {
     border: 2px solid #fff;
   }
   input {
-    height: 20px;
-    width: 80%;
+    height: 30px;
   }
   textarea {
-    width: 40%;
-    height: 4em;
+    height: 60px;
   }
   .radio-div {
     padding: 4px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
+    align-items: center;
+    span {
+      flex: 1;
+    }
+    input {
+      flex: 1;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  button {
+    background-color: #f71b39 !important;
+    border-radius: 0.3em;
   }
 }
 
 .rc-time-picker {
   color: #000 !important;
   .rc-time-picker-input {
-    height: 32px;
     border-radius: 0;
-    width: 82%;
+    height: 41.5px !important;
   }
 }
 
@@ -141,14 +168,6 @@ body {
   }
 }
 
-a {
-  text-decoration: none;
-  color: #fff;
-  border: 2px solid white;
-  padding: 8px;
-  margin-top: 8px;
-}
-
 .dark-mode-toggle {
   display: flex;
   margin: 0 auto;
@@ -213,6 +232,16 @@ input[type="checkbox"].dmcheck {
 }
 
 .light-mode {
+  form {
+    button {
+      background-color: #f6f6f6 !important;
+    }
+  }
+  .header {
+    span {
+      color: #1d1b1b;
+    }
+  }
   #note {
     color: #000;
   }
@@ -234,6 +263,11 @@ input[type="checkbox"].dmcheck {
     .form-group {
       color: #000;
     }
+    #create {
+      h1 {
+        color: #000;
+      }
+    }
   }
   .reserve-data-box {
     background-color: #f0f0f0;
@@ -243,18 +277,35 @@ input[type="checkbox"].dmcheck {
   }
 }
 @media only screen and (max-width: 500px) {
+  .App {
+    padding: 16px;
+  }
   #note {
     width: 300px;
   }
   form {
-    button {
-      margin: 8px;
-    }
-    #remarks {
-      width: 92%;
-    }
+    width: 90vw !important;
+    display: flex !important;
+    flex-direction: column;
     .rc-time-picker-input {
-      width: 88% !important;
+      width: 101.3% !important;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    justify-content: center !important;
+    input {
+      width: calc(100% - 8px);
+    }
+  }
+  .reserve-data {
+    grid-template-columns: repeat(2, 1fr) !important;
+    span {
+      padding: 4px !important;
+      font-size: 18px !important;
+      display: flex;
+      flex-direction: column;
     }
   }
 }

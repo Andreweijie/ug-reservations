@@ -16,12 +16,14 @@ export default class CreateNew extends Component {
       time: moment(),
       seatPref: "",
       contactPref: "",
-      remarks: ""
+      remarks: "",
+      loading: "submit"
     };
     this.onTimeChange = this.onTimeChange.bind(this);
   }
 
   onChange = e => {
+    console.log(this.state.date);
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -33,9 +35,11 @@ export default class CreateNew extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
+    this.setState({
+      loading: "submitting..."
+    });
     const newReserve = {
-      outlet: "TCS",
+      outlet: "CM-PB",
       name: this.state.name,
       mobile: this.state.mobile,
       email: this.state.email,
@@ -78,126 +82,129 @@ export default class CreateNew extends Component {
       <div id="create">
         <h1>Reserve A Table!</h1>
         <form>
-          <div className="form-row">
-            <div className="form-col">
-              <div className="form-group">
-                <label>Name</label>
-                <input
-                  value={this.state.name}
-                  onChange={this.onChange}
-                  id="name"
-                  type="text"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Mobile No</label>
-                <input
-                  value={this.state.mobile}
-                  onChange={this.onChange}
-                  id="mobile"
-                  type="text"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Email</label>
-                <input
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  id="email"
-                  type="Email"
-                ></input>
-              </div>
-            </div>
-            <div className="form-col">
-              <div className="form-group">
-                <label>No of Pax</label>
-                <input
-                  value={this.state.pax}
-                  onChange={this.onChange}
-                  type="number"
-                  id="pax"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Date</label>
-                <input
-                  value={this.state.date}
-                  onChange={this.onChange}
-                  type="date"
-                  id="date"
-                ></input>
-              </div>
-              <div className="form-group">
-                <label>Time</label>
-                <TimePicker
-                  defaultValue={this.state.value}
-                  showSecond={false}
-                  onChange={this.onTimeChange}
-                  allowEmpty={false}
-                ></TimePicker>
-              </div>
-            </div>
+          <div className="form-group">
+            <label>Name*</label>
+            <input
+              required
+              value={this.state.name}
+              onChange={this.onChange}
+              id="name"
+              type="text"
+            ></input>
           </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label>Seat Preference:</label>
-              <div className="radio-div">
-                <input
-                  value="indoor"
-                  onChange={this.onChange}
-                  id="seatPref"
-                  name="seatPref"
-                  type="radio"
-                ></input>
-                <span>Indoor</span>
-              </div>
-              <div className="radio-div">
-                <input
-                  value="outdoor"
-                  onChange={this.onChange}
-                  id="seatPref"
-                  name="seatPref"
-                  type="radio"
-                ></input>
-                <span>Outdoor</span>
-              </div>
-              <div className="radio-div">
-                <input
-                  value="Bar"
-                  onChange={this.onChange}
-                  id="seatPref"
-                  name="seatPref"
-                  type="radio"
-                ></input>
-                <span>Bar</span>
-              </div>
-            </div>
-            <div className="form-group">
-              <label>You wish to be contacted by:</label>
-              <div className="radio-div">
-                <input
-                  value="mobile"
-                  onChange={this.onChange}
-                  id="contactPref"
-                  name="contactPref"
-                  type="radio"
-                ></input>
-                <span>Mobile</span>
-              </div>
-              <div className="radio-div">
-                <input
-                  value="Email"
-                  onChange={this.onChange}
-                  id="contactPref"
-                  name="contactPref"
-                  type="radio"
-                ></input>
-                <span>Email</span>
-              </div>
-            </div>
+          <div className="form-group">
+            <label>Mobile No*</label>
+            <input
+              required
+              value={this.state.mobile}
+              onChange={this.onChange}
+              id="mobile"
+              type="text"
+            ></input>
+          </div>
+          <div className="form-group">
+            <label>Email*</label>
+            <input
+              required
+              value={this.state.email}
+              onChange={this.onChange}
+              id="email"
+              type="Email"
+            ></input>
           </div>
 
           <div className="form-group">
+            <label>No of Pax*</label>
+            <input
+              required
+              value={this.state.pax}
+              onChange={this.onChange}
+              type="number"
+              id="pax"
+            ></input>
+          </div>
+          <div className="form-group">
+            <label>Date*</label>
+            <input
+              required
+              value={this.state.date}
+              onChange={this.onChange}
+              type="date"
+              id="date"
+            ></input>
+          </div>
+          <div className="form-group">
+            <label>Time*</label>
+            <TimePicker
+              defaultValue={this.state.value}
+              showSecond={false}
+              onChange={this.onTimeChange}
+              allowEmpty={false}
+            ></TimePicker>
+          </div>
+          <div className="form-group">
+            <label>Seat Preference:*</label>
+            <div className="radio-div">
+              <input
+                required
+                value="indoor"
+                onChange={this.onChange}
+                id="seatPref"
+                name="seatPref"
+                type="radio"
+              ></input>
+              <span>Indoor</span>
+            </div>
+            <div className="radio-div">
+              <input
+                required
+                value="outdoor"
+                onChange={this.onChange}
+                id="seatPref"
+                name="seatPref"
+                type="radio"
+              ></input>
+              <span>Outdoor</span>
+            </div>
+            <div className="radio-div">
+              <input
+                required
+                value="Bar"
+                onChange={this.onChange}
+                id="seatPref"
+                name="seatPref"
+                type="radio"
+              ></input>
+              <span>Bar</span>
+            </div>
+          </div>
+          <div className="form-group">
+            <label>You wish to be contacted by:*</label>
+            <div className="radio-div">
+              <input
+                required
+                value="mobile"
+                onChange={this.onChange}
+                id="contactPref"
+                name="contactPref"
+                type="radio"
+              ></input>
+              <span>Mobile</span>
+            </div>
+            <div className="radio-div">
+              <input
+                required
+                value="Email"
+                onChange={this.onChange}
+                id="contactPref"
+                name="contactPref"
+                type="radio"
+              ></input>
+              <span>Email</span>
+            </div>
+          </div>
+
+          <div className="form-group full-width">
             <label>Remarks</label>
             <textarea
               value={this.state.remarks}
@@ -206,8 +213,8 @@ export default class CreateNew extends Component {
             ></textarea>
           </div>
 
-          <button type="submit" onClick={this.onSubmit}>
-            submit
+          <button className="full-width" type="submit" onClick={this.onSubmit}>
+            {this.state.loading}
           </button>
         </form>
         <div id="note">

@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import db from "../Firebase/firebase";
-import ReserveData from "./ReserveData";
+import ReserveData from "../dashboard/ReserveData";
 
-export default class Dashboard extends Component {
+export default class Today extends Component {
   state = {
     reservations: [],
     loading: true
   };
   componentDidMount() {
+    let day = new Date().getDate();
+    let month = new Date().getMonth();
+    let year = new Date().getFullYear();
     db.collection("reservations")
-      .where("outlet", "==", "CM-PB")
-      .orderBy("createdAt", "desc")
+      .where("date", ">=", new Date(year, month, day, 0, 0, 0, 0))
+      .where("date", "<=", new Date(year, month, day, 23, 0, 0, 0))
       .onSnapshot(querySnapshot => {
         console.log(querySnapshot);
         let data = [];

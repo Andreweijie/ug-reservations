@@ -17,13 +17,23 @@ export default class ReserveData extends Component {
       });
   };
 
+  cancelReservation = () => {
+    db.collection("reservations")
+      .doc(this.props.data.id)
+      .delete()
+      .then(() => {
+        console.log("reservation cancelled");
+      });
+  };
+
   sendConfirmation = () => {
     const mailData = {
       name: this.props.data.name,
-      date: this.props.data.date,
+      date: new Date(this.props.data.date.seconds * 1000),
       pax: this.props.data.pax,
       seatPref: this.props.data.seatPref,
-      time: this.props.data.time
+      time: this.props.data.time,
+      email: this.props.data.email
     };
     fetch(
       "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",
@@ -55,6 +65,13 @@ export default class ReserveData extends Component {
     );
     return (
       <div className="reserve-data-box">
+        <div className="header">
+          <span>
+            ID: <b>{this.props.data.id}</b>
+          </span>
+          <button onClick={this.cancelReservation}>Cancel</button>
+        </div>
+        <hr></hr>
         <div className="reserve-data">
           <span>
             <h4 style={{ margin: 0 }}>Name</h4>

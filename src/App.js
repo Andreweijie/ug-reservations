@@ -5,6 +5,7 @@ import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import Confirmation from "./components/create/Confirmation";
 import DarkModeToggle from "./components/utils/DarkModeToggle";
+import Today from "./components/date/Today";
 
 class App extends Component {
   render() {
@@ -12,10 +13,14 @@ class App extends Component {
       <div className="App">
         <img src={require("./images/logo.png")}></img>
         <DarkModeToggle></DarkModeToggle>
-        <Link to="/">Home</Link>
-        <Link to="/create">Create New</Link>
+        <div className="links">
+          <Link to="/">Home</Link>
+          <Link to="/create">Create New</Link>
+          <Link to="/today">Today</Link>
+        </div>
         <Route exact path="/create" component={CreateNew} />
         <Route exact path="/" component={Dashboard}></Route>
+        <Route exact path="/today" component={Today}></Route>
         <Route exact path="/confirmation" component={Confirmation}></Route>
       </div>
     );

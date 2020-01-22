@@ -12,6 +12,7 @@ export default class Today extends Component {
     let month = new Date().getMonth();
     let year = new Date().getFullYear();
     db.collection("reservations")
+      .where("outlet", "==", "CM-PB")
       .where("date", ">=", new Date(year, month, day, 0, 0, 0, 0))
       .where("date", "<=", new Date(year, month, day, 23, 0, 0, 0))
       .onSnapshot(querySnapshot => {

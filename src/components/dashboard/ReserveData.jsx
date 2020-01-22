@@ -33,7 +33,8 @@ export default class ReserveData extends Component {
       pax: this.props.data.pax,
       seatPref: this.props.data.seatPref,
       time: this.props.data.time,
-      email: this.props.data.email
+      email: this.props.data.email,
+      outlet: "CM-PB"
     };
     fetch(
       "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",

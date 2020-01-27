@@ -39,7 +39,7 @@ export default class CreateNew extends Component {
       loading: "submitting..."
     });
     const newReserve = {
-      outlet: "CM-PB",
+      outlet: "TCS",
       name: this.state.name,
       mobile: this.state.mobile,
       email: this.state.email,

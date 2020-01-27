@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
   };
   componentDidMount() {
     db.collection("reservations")
-      .where("outlet", "==", "CM-PB")
+      .where("outlet", "==", "TCS")
       .orderBy("createdAt", "desc")
       .onSnapshot(querySnapshot => {
         console.log(querySnapshot);

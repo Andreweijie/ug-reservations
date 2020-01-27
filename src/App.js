@@ -11,8 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img src={require("./images/logo.png")}></img>
-        <DarkModeToggle></DarkModeToggle>
+        <img src="https://i.imgur.com/wWxOWWa.png" alt="test" />
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/create">Create New</Link>

@@ -156,6 +156,47 @@ body {
   }
 }
 
+.summary-data-box {
+  box-shadow: 0.625rem 0.75rem 3.375rem 0 rgba(78, 98, 117, 0.1);
+  color: #000;
+  background-color: #f5dcba;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 0.2em;
+  hr {
+    border-color: black;
+  }
+  button {
+    border: none;
+    color: #1d1b1b;
+    font-weight: bold;
+    padding: 8px;
+    background-color: #e6a44a;
+    color: #000;
+    font-size: 16px;
+  }
+  .buttons {
+    grid-column: 1;
+    width: 100%;
+    display: flex;
+    button {
+      flex: 1;
+    }
+  }
+  .summary-data {
+    display: grid;
+    //  border: 2px solid #fff;
+
+    grid-template-columns: repeat(6, 1fr);
+    span {
+      padding: 8px;
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
 .reservation-box {
   text-align: center;
   padding: 8px;

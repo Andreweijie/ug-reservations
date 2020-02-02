@@ -4,7 +4,6 @@ import CreateNew from "./components/create/CreateNew";
 import "./App.css";
 import Dashboard from "./components/dashboard/Dashboard";
 import Confirmation from "./components/create/Confirmation";
-import DarkModeToggle from "./components/utils/DarkModeToggle";
 import Today from "./components/date/Today";
 
 class App extends Component {

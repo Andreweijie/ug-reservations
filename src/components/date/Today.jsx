@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import db from "../Firebase/firebase";
 import ReserveData from "../dashboard/ReserveData";
+import Summary from "../dashboard/Summary";
 
 export default class Today extends Component {
   state = {
@@ -34,7 +35,7 @@ export default class Today extends Component {
       <div className="dashboard">
         {!this.state.loading
           ? this.state.reservations.map(each => {
-              return <ReserveData key={each.id} data={each}></ReserveData>;
+              return <Summary key={each.id} data={each}></Summary>;
             })
           : null}
       </div>

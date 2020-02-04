@@ -27,6 +27,16 @@ export default class Summary extends Component {
       });
   };
 
+  onTableChange = e => {
+    db.collection("reservations")
+      .doc(this.props.data.id)
+      .update({ tableNo: e.target.value });
+  };
+  onTurnOverChange = e => {
+    db.collection("reservations")
+      .doc(this.props.data.id)
+      .update({ turnOver: e.target.value });
+  };
   render() {
     console.log(this.props.data.date);
     let date = new Date(this.props.data.date.seconds * 1000).toLocaleString(
@@ -59,11 +69,19 @@ export default class Summary extends Component {
           </span>
           <span>
             <h4 style={{ margin: 0 }}>Table</h4>
-            <input type="text" value={this.props.data.time}></input>
+            <input
+              type="text"
+              onChange={this.onTableChange}
+              value={this.props.data.tableNo}
+            ></input>
           </span>
           <span>
             <h4 style={{ margin: 0 }}>Turnover</h4>
-            <input type="text" value={this.props.data.time}></input>
+            <input
+              type="text"
+              onChange={this.onTurnOverChange}
+              value={this.props.data.turnOver}
+            ></input>
           </span>
         </div>
         <div className="buttons">

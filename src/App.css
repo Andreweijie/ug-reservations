@@ -292,6 +292,13 @@ body {
           flex-direction: column;
 }
 
+.summary-data-box .summary-data input {
+  width: 70px;
+  border: none;
+  padding: 4px;
+  background-color: #efc68d;
+}
+
 .reservation-box {
   text-align: center;
   padding: 8px;

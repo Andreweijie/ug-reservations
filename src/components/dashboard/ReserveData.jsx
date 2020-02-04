@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import db from "../Firebase/firebase";
 
 export default class ReserveData extends Component {
+  state = {
+    sending: "Send Email"
+  };
   confirmReserve = () => {
     db.collection("reservations")
       .doc(this.props.data.id)
@@ -27,32 +30,42 @@ export default class ReserveData extends Component {
   };
 
   sendConfirmation = () => {
-    const mailData = {
-      name: this.props.data.name,
-      date: new Date(this.props.data.date.seconds * 1000),
-      pax: this.props.data.pax,
-      seatPref: this.props.data.seatPref,
-      time: this.props.data.time,
-      email: this.props.data.email,
-      outlet: "TCS"
-    };
-    fetch(
-      "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",
+    this.setState(
       {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(mailData)
+        sending: "Sending..."
+      },
+      () => {
+        const mailData = {
+          name: this.props.data.name,
+          date: new Date(this.props.data.date.seconds * 1000),
+          pax: this.props.data.pax,
+          seatPref: this.props.data.seatPref,
+          time: this.props.data.time,
+          email: this.props.data.email,
+          outlet: "TCS"
+        };
+        fetch(
+          "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(mailData)
+          }
+        )
+          .then(res => res.json())
+          .then(data => {
+            if (data.message) {
+              console.log("Success");
+
+              this.confirmReserve();
+
+              this.setState({ sending: "sent" });
+            }
+          });
       }
-    )
-      .then(res => res.json())
-      .then(data => {
-        if (data.message) {
-          console.log("Success");
-          this.confirmReserve();
-        }
-      });
+    );
   };
   render() {
     console.log(this.props.data.date);

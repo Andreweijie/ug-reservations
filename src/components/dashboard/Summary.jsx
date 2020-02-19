@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 
 /*
 Time
@@ -89,8 +89,8 @@ export default class Summary extends Component {
             className="arrive-btn"
             style={
               this.props.data.finished
-                ? { backgroundColor: "#69d693" }
-                : { backgroundColor: "#333333" }
+                ? { backgroundColor: "#69d693", color: "#fff" }
+                : { backgroundColor: "#333333", color: "#fff" }
             }
             onClick={this.confirmArrival}
           >

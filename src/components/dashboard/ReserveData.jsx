@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 
 export default class ReserveData extends Component {
   state = {
@@ -77,6 +77,15 @@ export default class ReserveData extends Component {
         day: "numeric"
       }
     );
+    let createDate = new Date(
+      this.props.data.createdAt.seconds * 1000
+    ).toLocaleString("en-US", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric"
+    });
     return (
       <div className="reserve-data-box">
         <div className="header">
@@ -123,6 +132,7 @@ export default class ReserveData extends Component {
             <h4 style={{ margin: 0 }}>Remarks</h4>
             {this.props.data.remarks}
           </span>
+          <span>{createDate}</span>
         </div>
         <div className="buttons">
           <button className="email-btn" onClick={this.sendConfirmation}>
@@ -143,8 +153,8 @@ export default class ReserveData extends Component {
             className="arrive-btn"
             style={
               this.props.data.finished
-                ? { backgroundColor: "#69d693" }
-                : { backgroundColor: "#333333" }
+                ? { backgroundColor: "#69d693", color: "#fff" }
+                : { backgroundColor: "#333333", color: "#fff" }
             }
             onClick={this.confirmArrival}
           >

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 import ReserveData from "../dashboard/ReserveData";
 import Summary from "../dashboard/Summary";
 

@@ -83,7 +83,6 @@ export default class ReserveData extends Component {
           <span>
             ID: <b>{this.props.data.id}</b>
           </span>
-          <button onClick={this.cancelReservation}>Cancel</button>
         </div>
         <hr></hr>
         <div className="reserve-data">

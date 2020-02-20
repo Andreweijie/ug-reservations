@@ -1,6 +1,30 @@
 body {
   background-color: rgba(239, 198, 141, 1);
 }
+.react-datepicker-component .react-datepicker-input {
+  background: none !important;
+  border: none !important;
+  height: 42px !important;
+  input {
+    height: 42px;
+  }
+}
+
+.react-datepicker .react-datepicker-container .react-datepicker-top {
+  background: #e6a44a !important;
+  border-color: #e6a44a !important;
+}
+
+.react-datepicker-component .react-datepicker-input.is-open {
+  border: none !important;
+}
+
+.react-datepicker-component
+  .react-datepicker-input
+  .button-wrapper
+  .input-button {
+  color: #000 !important;
+}
 .App {
   img {
     height: auto;
@@ -10,6 +34,37 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  .login {
+    padding: 64px;
+    background-color: #e6a44a;
+    margin: 64px;
+    border-radius: 0.5em;
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      button {
+        border: none;
+        font-size: 24px;
+        margin: 8px;
+        padding: 8px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin: 8px;
+        label {
+          font-weight: bold;
+          text-transform: capitalize;
+        }
+        input {
+          background-color: #f5dcba;
+          border: none;
+          font-size: 24px;
+        }
+      }
+    }
+  }
   #mains {
     display: flex;
     flex-direction: column;
@@ -211,14 +266,14 @@ body {
 .reservation-box {
   text-align: center;
   padding: 8px;
-  color: #fff;
+  color: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
   width: 70vw;
-  border: 4px solid #fff;
+  border: 4px solid #000;
   h3 {
     font-weight: lighter;
   }

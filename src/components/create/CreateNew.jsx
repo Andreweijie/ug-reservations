@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
+import { DatePicker, DatePickerInput } from "rc-datepicker";
+import "rc-datepicker/lib/style.css";
 import moment from "moment";
+import "moment/locale/en-SG";
 
 export default class CreateNew extends Component {
   constructor() {
@@ -26,7 +29,14 @@ export default class CreateNew extends Component {
     console.log(this.state.date);
     this.setState({ [e.target.id]: e.target.value });
   };
-
+  onDateChange = (jsDate, dateString) => {
+    this.setState(
+      {
+        date: dateString.slice(0, 10)
+      },
+      console.log(this.state.date)
+    );
+  };
   onTimeChange(value) {
     // do something
     console.log(value && value.format("HH:mm"));
@@ -117,6 +127,7 @@ export default class CreateNew extends Component {
             <label>No of Pax*</label>
             <input
               required
+              min="1"
               value={this.state.pax}
               onChange={this.onChange}
               type="number"
@@ -125,13 +136,10 @@ export default class CreateNew extends Component {
           </div>
           <div className="form-group">
             <label>Date*</label>
-            <input
-              required
+            <DatePickerInput
               value={this.state.date}
-              onChange={this.onChange}
-              type="date"
-              id="date"
-            ></input>
+              onChange={this.onDateChange}
+            ></DatePickerInput>
           </div>
           <div className="form-group">
             <label>Time*</label>
@@ -140,6 +148,7 @@ export default class CreateNew extends Component {
               showSecond={false}
               onChange={this.onTimeChange}
               allowEmpty={false}
+              minuteStep={15}
             ></TimePicker>
           </div>
           <div className="form-group">

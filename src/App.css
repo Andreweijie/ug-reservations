@@ -2,6 +2,32 @@ body {
   background-color: #efc68d;
 }
 
+.react-datepicker-component .react-datepicker-input {
+  background: none !important;
+  border: none !important;
+  height: 42px !important;
+}
+
+.react-datepicker-component .react-datepicker-input input {
+  height: 42px;
+}
+
+.react-datepicker .react-datepicker-container .react-datepicker-top {
+  background: #e6a44a !important;
+  border-color: #e6a44a !important;
+}
+
+.react-datepicker-component .react-datepicker-input.is-open {
+  border: none !important;
+}
+
+.react-datepicker-component
+.react-datepicker-input
+.button-wrapper
+.input-button {
+  color: #000 !important;
+}
+
 .App {
   padding: 32px;
   display: -webkit-box;
@@ -19,6 +45,55 @@ body {
 .App img {
   height: auto;
   width: 250px;
+}
+
+.App .login {
+  padding: 64px;
+  background-color: #e6a44a;
+  margin: 64px;
+  border-radius: 0.5em;
+}
+
+.App .login form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.App .login form button {
+  border: none;
+  font-size: 24px;
+  margin: 8px;
+  padding: 8px;
+}
+
+.App .login form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 8px;
+}
+
+.App .login form .form-group label {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.App .login form .form-group input {
+  background-color: #f5dcba;
+  border: none;
+  font-size: 24px;
 }
 
 .App #mains {
@@ -315,7 +390,7 @@ body {
 .reservation-box {
   text-align: center;
   padding: 8px;
-  color: #fff;
+  color: #000;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -331,7 +406,7 @@ body {
           align-items: center;
   min-height: 70vh;
   width: 70vw;
-  border: 4px solid #fff;
+  border: 4px solid #000;
 }
 
 .reservation-box h3 {

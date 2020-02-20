@@ -5,6 +5,7 @@ import fire, { auth } from "./components/Firebase/firebase";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Main from "./components/Main";
+import Confirmation from "./components/create/Confirmation";
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
           component={Main}
           auth={this.state.auth}
         ></PrivateRoute>
+        <Route exact path="/confirmation" component={Confirmation}></Route>
       </div>
     );
   }

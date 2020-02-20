@@ -68,7 +68,6 @@ export default class ReserveData extends Component {
     );
   };
   render() {
-    console.log(this.props.data.date);
     let date = new Date(this.props.data.date.seconds * 1000).toLocaleString(
       "en-US",
       {

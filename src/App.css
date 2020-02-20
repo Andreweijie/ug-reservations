@@ -9,7 +9,7 @@ body {
 }
 
 .react-datepicker-component .react-datepicker-input input {
-  height: 42px;
+  height: 42px !important;
 }
 
 .react-datepicker .react-datepicker-container .react-datepicker-top {
@@ -44,7 +44,8 @@ body {
 
 .App img {
   height: auto;
-  width: 250px;
+  width: 180px;
+  margin-bottom: 48px;
 }
 
 .App .login {
@@ -111,6 +112,7 @@ body {
 
 .App #mains .links {
   margin: 16px;
+  margin-bottom: 48px;
 }
 
 .App #mains .links a {
@@ -262,6 +264,16 @@ body {
 
 .dashboard {
   color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .reserve-data-box {
@@ -272,6 +284,7 @@ body {
   margin: 16px;
   padding: 16px;
   border-radius: 0.2em;
+  width: 80%;
 }
 
 .reserve-data-box hr {

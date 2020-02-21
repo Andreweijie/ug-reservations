@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { db } from "../Firebase/firebase";
 import ReserveData from "./ReserveData";
-import { DatePicker, DatePickerInput } from "rc-datepicker";
+import { DatePicker } from "rc-datepicker";
 import "rc-datepicker/lib/style.css";
 
 export default class Dashboard extends Component {
@@ -13,7 +13,7 @@ export default class Dashboard extends Component {
     dates: []
   };
   componentDidMount() {
-    db.collection("reservations")
+    db.collection("test")
       .where("outlet", "==", "TCS")
       .orderBy("createdAt", "desc")
       .onSnapshot(querySnapshot => {

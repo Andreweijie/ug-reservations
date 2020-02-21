@@ -11,7 +11,7 @@ Turnover
 
 export default class Summary extends Component {
   confirmArrival = () => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .update({
         finished: true
@@ -19,7 +19,7 @@ export default class Summary extends Component {
   };
 
   cancelReservation = () => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .delete()
       .then(() => {
@@ -28,12 +28,12 @@ export default class Summary extends Component {
   };
 
   onTableChange = e => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .update({ tableNo: e.target.value });
   };
   onTurnOverChange = e => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .update({ turnOver: e.target.value });
   };

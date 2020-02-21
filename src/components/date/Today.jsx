@@ -12,7 +12,7 @@ export default class Today extends Component {
     let day = new Date().getDate();
     let month = new Date().getMonth();
     let year = new Date().getFullYear();
-    db.collection("reservations")
+    db.collection("test")
       .where("outlet", "==", "TCS")
       .where("date", ">=", new Date(year, month, day, 0, 0, 0, 0))
       .where("date", "<=", new Date(year, month, day, 23, 0, 0, 0))

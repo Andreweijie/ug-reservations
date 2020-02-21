@@ -6,14 +6,14 @@ export default class ReserveData extends Component {
     sending: "Send Email"
   };
   confirmReserve = () => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .update({
         confirmed: true
       });
   };
   confirmArrival = () => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .update({
         finished: true
@@ -21,7 +21,7 @@ export default class ReserveData extends Component {
   };
 
   cancelReservation = () => {
-    db.collection("reservations")
+    db.collection("test")
       .doc(this.props.data.id)
       .delete()
       .then(() => {

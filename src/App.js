@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, withRouter, Redirect } from "react-router-dom";
 import "./App.css";
-import fire, { auth } from "./components/Firebase/firebase";
+import { auth } from "./components/Firebase/firebase";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import Main from "./components/Main";

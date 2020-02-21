@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { auth } from "./Firebase/firebase";
-import { Redirect } from "react-router-dom";
 
 export default class Login extends Component {
   state = {

@@ -64,7 +64,7 @@ export default class CreateNew extends Component {
       confirmed: false
     };
 
-    db.collection("reservations").add(newReserve);
+    db.collection("test").add(newReserve);
 
     fetch(
       "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendReservationMail",

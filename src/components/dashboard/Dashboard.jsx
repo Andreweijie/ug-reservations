@@ -9,7 +9,8 @@ export default class Dashboard extends Component {
     reservations: [],
     loading: true,
     date: "",
-    count: 0
+    count: 0,
+    dates: []
   };
   componentDidMount() {
     db.collection("reservations")
@@ -23,17 +24,44 @@ export default class Dashboard extends Component {
         });
         this.setState({
           reservations: data,
-          loading: false
+          loading: false,
+          dates: data,
+          count: data.length
         });
       });
   }
 
+  onReset = () => {
+    this.setState({
+      date: "",
+      dates: this.state.reservations,
+      count: this.state.reservations.length
+    });
+  };
+
   onDateChange = (jsDate, dateString) => {
+    let newDates = [];
     this.setState(
       {
         date: jsDate
       },
-      console.log(jsDate)
+      () => {
+        if (this.state.date !== "") {
+          let { date } = this.state;
+          let calDate;
+          let reserveDate;
+          calDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+          newDates = this.state.reservations.filter(reserve => {
+            reserveDate = `${reserve.date
+              .toDate()
+              .getFullYear()}-${reserve.date
+              .toDate()
+              .getMonth()}-${reserve.date.toDate().getDate()}`;
+            return reserveDate === calDate;
+          });
+          this.setState({ dates: newDates, count: newDates.length });
+        }
+      }
     );
   };
   addCount = () => {
@@ -42,21 +70,7 @@ export default class Dashboard extends Component {
       count: current + 1
     });
   };
-  render() {
-    let { date } = this.state;
-    let calDate;
-    if (this.state.date !== "") {
-      calDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
-    }
-
-    return (
-      <div className="dashboard">
-        <DatePicker
-          value={this.state.date}
-          onChange={this.onDateChange}
-        ></DatePicker>
-        <h1>{this.state.count}</h1>
-        {!this.state.loading
+  /* {!this.state.loading
           ? this.state.reservations.map(each => {
               if (this.state.date == "") {
                 return <ReserveData key={each.id} data={each}></ReserveData>;
@@ -73,6 +87,33 @@ export default class Dashboard extends Component {
                   return null;
                 }
               }
+            })
+          : null} */
+  render() {
+    let { date } = this.state;
+    let calDate;
+    if (this.state.date !== "") {
+      calDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+    }
+
+    return (
+      <div className="dashboard">
+        <div className="dates">
+          <DatePicker
+            value={this.state.date}
+            onChange={this.onDateChange}
+          ></DatePicker>
+          <div>
+            <h1 style={{ color: "#000" }}>{this.state.count}</h1>
+            <button className="reset" onClick={this.onReset}>
+              CLEAR
+            </button>
+          </div>
+        </div>
+
+        {!this.state.loading
+          ? this.state.dates.map(each => {
+              return <ReserveData key={each.id} data={each}></ReserveData>;
             })
           : null}
       </div>

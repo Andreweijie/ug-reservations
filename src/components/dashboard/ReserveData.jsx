@@ -131,7 +131,6 @@ export default class ReserveData extends Component {
             <h4 style={{ margin: 0 }}>Remarks</h4>
             {this.props.data.remarks}
           </span>
-          <span>{createDate}</span>
         </div>
         <div className="buttons">
           <button className="email-btn" onClick={this.sendConfirmation}>

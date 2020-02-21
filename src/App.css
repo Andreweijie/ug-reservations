@@ -28,6 +28,14 @@ body {
   color: #000 !important;
 }
 
+.react-datepicker
+.react-datepicker-container
+.react-datepicker-body
+.react-datepicker-row
+.react-datepicker-picker.selected.current {
+  background-color: #e6a44a !important;
+}
+
 .App {
   padding: 32px;
   display: -webkit-box;
@@ -108,6 +116,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 90%;
 }
 
 .App #mains .links {
@@ -274,6 +283,43 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
+}
+
+.dashboard .dates {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.dashboard .dates div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.dashboard .dates div h1 {
+  font-size: 64px;
+  margin: 0;
+  text-align: center;
+}
+
+.dashboard .dates div .reset {
+  color: #e6a44a;
+  background-color: #fff;
+  border: none;
+  padding: 8px;
+  font-size: 16px;
 }
 
 .reserve-data-box {

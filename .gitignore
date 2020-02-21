@@ -8,6 +8,7 @@
 
 # production
 /build
+/build.zip
 /src/components/Firebase
 # misc
 .DS_Store

@@ -66,7 +66,7 @@ export default class CreateNew extends Component {
 
     db.collection("test").add(newReserve);
 
-    fetch(
+    /*fetch(
       "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendReservationMail",
       {
         method: "POST",
@@ -85,7 +85,7 @@ export default class CreateNew extends Component {
         } else {
           console.log("Failed");
         }
-      });
+      });*/
   };
   render() {
     return (

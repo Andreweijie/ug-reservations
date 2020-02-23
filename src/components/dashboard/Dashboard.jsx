@@ -95,7 +95,7 @@ export default class Dashboard extends Component {
     if (this.state.date !== "") {
       calDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
     }
-
+    console.log(this.state.reservations);
     return (
       <div className="dashboard">
         <div className="dates">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 import TimePicker from "rc-time-picker";
 import "rc-time-picker/assets/index.css";
 import moment from "moment";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 
 export default class ReserveData extends Component {
   state = {
@@ -42,7 +42,7 @@ export default class ReserveData extends Component {
           seatPref: this.props.data.seatPref,
           time: this.props.data.time,
           email: this.props.data.email,
-          outlet: "TCS"
+          outlet: "CM-PB"
         };
         fetch(
           "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",

@@ -139,6 +139,7 @@ export default class CreateNew extends Component {
             <DatePickerInput
               value={this.state.date}
               onChange={this.onDateChange}
+              minDate={new Date()}
             ></DatePickerInput>
           </div>
           <div className="form-group">

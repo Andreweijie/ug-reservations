@@ -1,26 +1,27 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 import ReserveData from "./ReserveData";
 
 export default class Dashboard extends Component {
   state = {
     reservations: [],
-    loading: true
+    loading: true,
   };
   componentDidMount() {
     db.collection("reservations")
       .where("outlet", "==", "TCS")
       .orderBy("createdAt", "desc")
-      .onSnapshot(querySnapshot => {
+      .limit(100)
+      .onSnapshot((querySnapshot) => {
         console.log(querySnapshot);
         let data = [];
-        querySnapshot.forEach(doc => {
+        querySnapshot.forEach((doc) => {
           let info = doc.data();
           data.push({ ...info, id: doc.id });
         });
         this.setState({
           reservations: data,
-          loading: false
+          loading: false,
         });
       });
   }
@@ -29,7 +30,7 @@ export default class Dashboard extends Component {
     return (
       <div className="dashboard">
         {!this.state.loading
-          ? this.state.reservations.map(each => {
+          ? this.state.reservations.map((each) => {
               return <ReserveData key={each.id} data={each}></ReserveData>;
             })
           : null}

@@ -93,8 +93,7 @@ body {
   justify-content: space-between;
   align-items: center;
   button {
-    background-color: #f71b39 !important;
-    border-radius: 0.3em;
+    background-color: #f5dcba;
   }
 }
 
@@ -118,6 +117,7 @@ body {
 .reserve-data-box {
   box-shadow: 0.625rem 0.75rem 3.375rem 0 rgba(78, 98, 117, 0.1);
   color: #000;
+  border: 2px solid #000;
   background-color: #f5dcba;
   margin: 16px;
   padding: 16px;
@@ -126,11 +126,11 @@ body {
     border-color: black;
   }
   button {
-    border: none;
     color: #1d1b1b;
     font-weight: bold;
     padding: 8px;
-    background-color: #e6a44a;
+    background-color: #f5dcba;
+    border: 2px solid #000;
     color: #000;
     font-size: 16px;
   }

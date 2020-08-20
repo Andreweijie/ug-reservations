@@ -10,7 +10,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <img src="https://i.imgur.com/wWxOWWa.png" alt="test" />
+        <img
+          src="https://i.imgur.com/wWxOWWa.png"
+          alt="test"
+          style={{ marginBottom: "1em" }}
+        />
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/create">Create New</Link>

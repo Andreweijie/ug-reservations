@@ -1,38 +1,34 @@
 import React, { Component } from "react";
-import db from "../Firebase/firebase";
+import { db } from "../Firebase/firebase";
 
 export default class ReserveData extends Component {
   state = {
-    sending: "Send Email"
+    sending: "Send Email",
+  };
+  confirmSent = () => {
+    db.collection("reservations").doc(this.props.data.id).update({
+      sent: true,
+    });
   };
   confirmReserve = () => {
-    db.collection("reservations")
-      .doc(this.props.data.id)
-      .update({
-        confirmed: true
-      });
+    db.collection("reservations").doc(this.props.data.id).update({
+      confirmed: true,
+    });
   };
   confirmArrival = () => {
-    db.collection("reservations")
-      .doc(this.props.data.id)
-      .update({
-        finished: true
-      });
+    db.collection("reservations").doc(this.props.data.id).update({
+      finished: true,
+    });
   };
-
+  confirmDecline = () => {
+    db.collection("reservations").doc(this.props.data.id).update({
+      declined: true,
+    });
+  };
   cancelReservation = () => {
-    db.collection("reservations")
-      .doc(this.props.data.id)
-      .delete()
-      .then(() => {
-        console.log("reservation cancelled");
-      });
-  };
-
-  sendConfirmation = () => {
     this.setState(
       {
-        sending: "Sending..."
+        sending: "Sending...",
       },
       () => {
         const mailData = {
@@ -42,24 +38,60 @@ export default class ReserveData extends Component {
           seatPref: this.props.data.seatPref,
           time: this.props.data.time,
           email: this.props.data.email,
-          outlet: "TCS"
+          outlet: "TCS",
+        };
+        fetch(
+          "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/reject",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(mailData),
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.message) {
+              console.log("Success");
+              this.confirmDecline();
+            }
+          });
+      }
+    );
+  };
+
+  sendConfirmation = () => {
+    this.setState(
+      {
+        sending: "Sending...",
+      },
+      () => {
+        const mailData = {
+          name: this.props.data.name,
+          date: new Date(this.props.data.date.seconds * 1000),
+          pax: this.props.data.pax,
+          seatPref: this.props.data.seatPref,
+          time: this.props.data.time,
+          email: this.props.data.email,
+          outlet: "TCS",
         };
         fetch(
           "https://us-central1-reservations-7dd65.cloudfunctions.net/widgets/sendConfirmationMail",
           {
             method: "POST",
             headers: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify(mailData)
+            body: JSON.stringify(mailData),
           }
         )
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             if (data.message) {
               console.log("Success");
 
-              this.confirmReserve();
+              this.confirmSent();
 
               this.setState({ sending: "sent" });
             }
@@ -74,7 +106,7 @@ export default class ReserveData extends Component {
       {
         year: "numeric",
         month: "numeric",
-        day: "numeric"
+        day: "numeric",
       }
     );
     return (
@@ -83,7 +115,14 @@ export default class ReserveData extends Component {
           <span>
             ID: <b>{this.props.data.id}</b>
           </span>
-          <button onClick={this.cancelReservation}>Cancel</button>
+          <button
+            style={
+              this.props.data.declined ? { backgroundColor: "#f71b39" } : null
+            }
+            onClick={this.cancelReservation}
+          >
+            Decline
+          </button>
         </div>
         <hr></hr>
         <div className="reserve-data">
@@ -125,28 +164,33 @@ export default class ReserveData extends Component {
           </span>
         </div>
         <div className="buttons">
-          <button className="email-btn" onClick={this.sendConfirmation}>
-            Send Email
+          <button
+            style={this.props.data.sent ? { backgroundColor: "#3ee67e" } : null}
+            className="email-btn"
+            onClick={this.sendConfirmation}
+            disabled={this.props.data.declined}
+          >
+            Confirm via email
           </button>
           <button
             className="confirm-btn"
             style={
-              this.props.data.confirmed
-                ? { backgroundColor: "#3ee67e" }
-                : { backgroundColor: "grey" }
+              this.props.data.confirmed ? { backgroundColor: "#3ee67e" } : null
             }
             onClick={this.confirmReserve}
+            disabled={this.props.data.declined}
           >
-            {this.props.data.confirmed ? "Confirmed" : "Confirm"}
+            {this.props.data.confirmed
+              ? "Confirm via mobile"
+              : "Confirm via mobile"}
           </button>
           <button
             className="arrive-btn"
             style={
-              this.props.data.finished
-                ? { backgroundColor: "#69d693" }
-                : { backgroundColor: "#333333" }
+              this.props.data.finished ? { backgroundColor: "#3ee67e" } : null
             }
             onClick={this.confirmArrival}
+            disabled={this.props.data.declined}
           >
             {this.props.data.finished ? "Arrived" : "Arrive"}
           </button>

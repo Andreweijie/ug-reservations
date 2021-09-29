@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { db } from "../Firebase/firebase";
 import ReserveData from "../dashboard/ReserveData";
 import Summary from "../dashboard/Summary";
+import Icon from "../Icon";
 
 export default class Today extends Component {
   state = {
@@ -33,6 +34,7 @@ export default class Today extends Component {
     console.log(this.state.reservations);
     return (
       <div className="dashboard">
+        <Icon></Icon>
         {!this.state.loading
           ? this.state.reservations.map((each) => {
               return <Summary key={each.id} data={each}></Summary>;

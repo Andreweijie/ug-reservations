@@ -11,7 +11,7 @@ export default class Dashboard extends Component {
     db.collection("reservations")
       .where("outlet", "==", "TCS")
       .orderBy("createdAt", "desc")
-      .limit(100)
+      .limit(50)
       .onSnapshot((querySnapshot) => {
         console.log(querySnapshot);
         let data = [];
